@@ -37,7 +37,11 @@ const NavBar = () => {
         </div>
         <div className="hidden md:flex space-x-6">
           {nav_links.map((l) => (
-            <Link href={l.link} className="text-white hover:text-gray-200">
+            <Link
+              href={l.link}
+              key={l.display}
+              className="text-white hover:text-gray-200"
+            >
               {l.display}
             </Link>
           ))}
@@ -57,7 +61,11 @@ const NavBar = () => {
         }`}
       >
         {nav_links.map((l) => (
-          <Link href={l.link} className="text-gray-100 hover:text-white">
+          <Link
+            href={l.link}
+            key={l.display}
+            className="text-gray-100 hover:text-white"
+          >
             {l.display}
           </Link>
         ))}
