@@ -87,13 +87,6 @@ const Offer = ({ delivery, products }: OfferProps) => {
           path={prodctOnOffer?.image as string}
         />
       </div>
-      <Image
-        src="/pizzaman.png"
-        alt=""
-        width={100}
-        height={100}
-        className={s.floating_img}
-      />
     </div>
   );
 };

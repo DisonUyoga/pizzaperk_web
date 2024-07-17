@@ -8,6 +8,7 @@ import { useGetDelivery, useGetProducts } from "@/lib/query";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { sessionToken, setUser } from "../features/slices/AuthSlice";
+import NavBar from "@/components/ui/NavBar";
 
 export default function Home() {
   const { data, isLoading, error } = useGetProducts();
@@ -44,6 +45,7 @@ export default function Home() {
 
   return (
     <main>
+      <NavBar />
       {delivery && data && <Offer delivery={delivery as any} products={data} />}
       <Slider />
       {data && <Featured products={data} />}
