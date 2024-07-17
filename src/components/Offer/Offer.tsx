@@ -81,7 +81,7 @@ const Offer = ({ delivery, products }: OfferProps) => {
       >
         <ProductImage
           fallback="/offerProduct.png"
-          path={prodctOnOffer?.image as string}
+          path={(prodctOnOffer?.image as string) || "/offerProduct.png"}
         />
       </div>
     </div>
