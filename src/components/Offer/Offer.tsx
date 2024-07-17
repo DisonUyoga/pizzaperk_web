@@ -17,27 +17,24 @@ const Offer = ({ delivery, products }: OfferProps) => {
     useState<Tables<"products"> | null>();
 
   useEffect(() => {
-    const percArray = checkProductWithHighestDiscount(products);
-
-    console.log(percArray?.flat());
-  }, [products]);
-
-  function checkProductWithHighestDiscount(p: Tables<"products">[]) {
-    if (!p) return;
-    const item = p.map((i) => {
-      const percDisc = [];
-      if (i.discount && i.discount > i.price) {
-        const dis = calcDis(i.price, i.discount);
-        if (dis) {
-          percDisc.push({ id: i.id, percentage: dis });
+    function checkProductWithHighestDiscount(p: Tables<"products">[]) {
+      if (!p) return;
+      const item = p.map((i) => {
+        const percDisc = [];
+        if (i.discount && i.discount > i.price) {
+          const dis = calcDis(i.price, i.discount);
+          if (dis) {
+            percDisc.push({ id: i.id, percentage: dis });
+          }
         }
-      }
-      return percDisc;
-    });
-    if (!item) return;
-    objectWithHighestPercentage(item.flat());
-    return item;
-  }
+        return percDisc;
+      });
+      if (!item) return;
+      objectWithHighestPercentage(item.flat());
+      return item;
+    }
+    checkProductWithHighestDiscount(products);
+  }, [products]);
 
   function objectWithHighestPercentage(
     d: { id: number; percentage: number }[]
