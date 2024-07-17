@@ -5,12 +5,9 @@ import SkeletonLoader from "@/components/SkeletonLoader";
 import Slider from "@/components/Slider/Slider";
 import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import { useGetDelivery, useGetProducts } from "@/lib/query";
-import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { sessionToken, setUser } from "../features/slices/AuthSlice";
-import { Tables } from "@/type";
 
 export default function Home() {
   const { data, isLoading, error } = useGetProducts();

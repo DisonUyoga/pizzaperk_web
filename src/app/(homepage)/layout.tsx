@@ -71,7 +71,7 @@ export default function ChildLayout({
         );
       }
     });
-  }, []);
+  }, [router]);
 
   return (
     <ThemeProvider theme={theme}>

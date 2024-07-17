@@ -154,7 +154,7 @@ const LoginPage = () => {
             <span className="text-blue-700">Sign in with Facebook</span>
           </button>
           <p className="text-sm text-gray-100">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               className="underline text-blue-700"
               href="https://wa.me/254702122421"

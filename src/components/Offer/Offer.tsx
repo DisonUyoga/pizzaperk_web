@@ -22,7 +22,7 @@ const Offer = ({ delivery, products }: OfferProps) => {
       objectWithHighestPercentage(percArray?.flat());
     }
     console.log(percArray?.flat());
-  }, [products]);
+  }, [products, objectWithHighestPercentage]);
 
   function checkProductWithHighestDiscount(p: Tables<"products">[]) {
     if (!p) return;
@@ -54,7 +54,7 @@ const Offer = ({ delivery, products }: OfferProps) => {
     if (!productWithHighestPercentage) return;
     setProductOnOffer(productWithHighestPercentage[0]);
   }
-  console.log(prodctOnOffer);
+
   return (
     <div className={s.container}>
       {/* TEXT CONTAINER  */}
@@ -67,8 +67,8 @@ const Offer = ({ delivery, products }: OfferProps) => {
           PizzaPerk
         </h1>
         <p className={s.offer_hero_title}>
-          "Discover PizzaPerk: Your Crave-Worthy Shortcut to Delicious Pizza
-          Bliss!"
+          &quot;Discover PizzaPerk: Your Crave-Worthy Shortcut to Delicious
+          Pizza Bliss!&quot;
         </p>
 
         {delivery[0].countdown && <CountDown date={delivery[0].countdown} />}
@@ -84,7 +84,7 @@ const Offer = ({ delivery, products }: OfferProps) => {
       >
         <ProductImage
           fallback="/offerProduct.png"
-          path={(prodctOnOffer?.image as string) || "/offerProduct.png"}
+          path={prodctOnOffer?.image as string}
         />
       </div>
       <Image
