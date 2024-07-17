@@ -18,11 +18,9 @@ const Offer = ({ delivery, products }: OfferProps) => {
 
   useEffect(() => {
     const percArray = checkProductWithHighestDiscount(products);
-    if (percArray) {
-      objectWithHighestPercentage(percArray?.flat());
-    }
+
     console.log(percArray?.flat());
-  }, [products, objectWithHighestPercentage]);
+  }, [products]);
 
   function checkProductWithHighestDiscount(p: Tables<"products">[]) {
     if (!p) return;
@@ -36,6 +34,8 @@ const Offer = ({ delivery, products }: OfferProps) => {
       }
       return percDisc;
     });
+    if (!item) return;
+    objectWithHighestPercentage(item.flat());
     return item;
   }
 
