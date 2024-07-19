@@ -26,6 +26,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
         p="10px"
         columnGap={5}
         h={"90px"}
+        w={"100%"}
       >
         <Box position={"relative"} w={"60px"}>
           {pizzas[0].img && cartItem.image && (
