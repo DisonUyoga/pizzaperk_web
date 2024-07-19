@@ -44,6 +44,7 @@ const NavBar = () => {
             <Link
               href={l.link}
               key={l.display}
+              onClick={() => setIsOpen(!isOpen)}
               className="text-white hover:text-gray-200"
             >
               {l.display}
@@ -69,6 +70,7 @@ const NavBar = () => {
             href={l.link}
             key={l.display}
             className="text-gray-100 hover:text-white"
+            onClick={() => setIsOpen(!isOpen)}
           >
             {l.display}
           </Link>
