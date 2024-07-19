@@ -6,24 +6,25 @@ import { ComponentProps } from "react";
 type RemoteImageProps = {
   path?: string;
   fallback: string;
+  radius?: string;
 };
 
-const ProductImage = ({ path, fallback }: RemoteImageProps) => {
+const ProductImage = ({ path, fallback, radius }: RemoteImageProps) => {
   const image = useSupabaseImageDownLoader(path);
 
   if (!image) {
   }
-  
+
   return (
     <div>
       {image ? (
-        <Image src={image} alt="" fill className="object-cover rounded" />
+        <Image src={image} alt="" fill className="object-cover " />
       ) : (
         <Image
           src={fallback}
           alt=""
           fill
-          className="object-cover rounded"
+          className={`object-cover ${radius && radius}`}
           style={{
             filter: "blur(20px)",
           }}

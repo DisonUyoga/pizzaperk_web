@@ -68,7 +68,7 @@ const Offer = ({ delivery, products }: OfferProps) => {
           Pizza Bliss!&quot;
         </p>
 
-        {delivery[0].countdown && <CountDown date={delivery[0].countdown} />}
+        {delivery[0]?.countdown && <CountDown date={delivery[0]?.countdown} />}
 
         <Button variant="naked">Order Now</Button>
       </div>

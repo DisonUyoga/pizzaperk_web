@@ -16,6 +16,8 @@ import {
   setUser,
 } from "../features/slices/AuthSlice";
 import { useRouter } from "next/navigation";
+
+import { ChakraProvider } from "@chakra-ui/react";
 const theme = createTheme();
 export default function ChildLayout({
   children,
@@ -75,10 +77,12 @@ export default function ChildLayout({
 
   return (
     <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <CssBaseline />
-        <main>{children}</main>;
-      </Provider>
+      <ChakraProvider>
+        <Provider store={store}>
+          <CssBaseline />
+          <main>{children}</main>;
+        </Provider>
+      </ChakraProvider>
     </ThemeProvider>
   );
 }

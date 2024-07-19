@@ -13,6 +13,10 @@ const NavBar = () => {
       link: "/",
     },
     {
+      display: "Menu",
+      link: "/menu",
+    },
+    {
       display: "Orders",
       link: "/orders",
     },
