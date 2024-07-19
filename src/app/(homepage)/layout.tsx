@@ -18,6 +18,7 @@ import {
 import { useRouter } from "next/navigation";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import NavBar from "@/components/ui/NavBar";
 const theme = createTheme();
 export default function ChildLayout({
   children,
@@ -80,6 +81,7 @@ export default function ChildLayout({
       <ChakraProvider>
         <Provider store={store}>
           <CssBaseline />
+          <NavBar />
           <main>{children}</main>;
         </Provider>
       </ChakraProvider>
