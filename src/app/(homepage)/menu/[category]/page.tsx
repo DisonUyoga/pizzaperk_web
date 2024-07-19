@@ -68,7 +68,7 @@ const CategoryPage = () => {
   }
   console.log(filteredData);
   return (
-    <Box p="10px">
+    <Box p="10px" bg="#161622">
       {cat && (
         <Text
           color={"#fff"}

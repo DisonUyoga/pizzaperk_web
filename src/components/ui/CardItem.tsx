@@ -123,6 +123,7 @@ const CardItem = ({ product }: CardProps) => {
             borderRadius={"0"}
             onClick={() => addProductToCart(product)}
             _hover={{ opacity: 0.7 }}
+            fontSize={"xs"}
           >
             Add to cart
           </Button>
