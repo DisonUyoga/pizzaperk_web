@@ -85,9 +85,6 @@ const CardItem = ({ product }: CardProps) => {
             </Box>
           )}
           <Flex alignItems={"center"} justifyContent={"space-between"}>
-            <Text fontWeight={700} fontSize={"xs"} bg={"#FF9C01"} p={"4px"}>
-              {priceTag(product.price)}
-            </Text>
             {product.discount && (
               <Text
                 fontSize={"xs"}
@@ -99,6 +96,9 @@ const CardItem = ({ product }: CardProps) => {
                 {priceTag(product.discount)}
               </Text>
             )}
+            <Text fontWeight={700} fontSize={"xs"} bg={"#FF9C01"} p={"4px"}>
+              {priceTag(product.price)}
+            </Text>
             {product.discount && product.discount > product.price && (
               <Text color={"#FF9C01"}>
                 -{discountCalculator(product.price, product.discount)}

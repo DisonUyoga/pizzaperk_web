@@ -9,9 +9,11 @@ import { useGetDelivery, useGetProducts } from "@/lib/query";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { sessionToken, setUser } from "../features/slices/AuthSlice";
+import { useDisclosure } from "@chakra-ui/react";
 
 export default function Home() {
   const { data, isLoading, error } = useGetProducts();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     data: delivery,
     isLoading: isLoadingDelivery,
@@ -47,6 +49,7 @@ export default function Home() {
       {delivery && data && <Offer delivery={delivery as any} products={data} />}
       <Slider />
       {data && <Featured products={data} />}
+      
     </main>
   );
 }
