@@ -10,6 +10,7 @@ import { useAppSelector } from "@/lib/hook";
 import { Tables } from "@/type";
 import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import Spinner from "@/components/ui/Spinner";
+import toast from "react-hot-toast";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -30,6 +31,10 @@ const CategoryPage = () => {
           const f = data.filter((p) => p.category_id === id);
           if (f.length > 0) {
             setFilteredData(f);
+          }
+          if (f.length === 0) {
+            toast.error("No items under this category");
+            router.back();
           }
         }
       } catch (error) {}
@@ -80,11 +85,8 @@ const CategoryPage = () => {
         position={"relative"}
         py={"20px"}
       >
-        {filteredData ? (
-          filteredData.map((p) => <CardItem key={p.id} product={p} />)
-        ) : (
-          <Spinner />
-        )}
+        {filteredData &&
+          filteredData.map((p) => <CardItem key={p.id} product={p} />)}
       </SimpleGrid>
     </Box>
   );
