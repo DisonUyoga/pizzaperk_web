@@ -24,7 +24,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
     length: 12,
   });
   return (
-    <Link as={NextLink} href={`/product/${cartItem.id}`} w={"100%"}>
+    
       <Flex
         alignContent={"center"}
         justifyContent={"space-between"}
@@ -57,7 +57,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           alignContent={"center"}
           justifyContent={"space-between"}
         >
-          <HStack spacing={"8px"} p={0} m={0}>
+          <HStack spacing={"15px"} p={0} m={0}>
             <AddIcon
               w={[2, 4]}
               h={[2, 4]}
@@ -77,7 +77,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           </Text>
         </Flex>
       </Flex>
-    </Link>
+  
   );
 };
 
