@@ -4,20 +4,12 @@ import { useEffect, useState } from "react";
 import { useGetProducts } from "@/lib/query";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 
-import SkeletonLoader from "@/components/SkeletonLoader";
 import CardItem from "@/components/ui/CardItem";
 import ErrorComponent from "@/components/ui/ErrorComponent";
 import { useAppSelector } from "@/lib/hook";
 import { Tables } from "@/type";
-import {
-  Box,
-  SimpleGrid,
-  Spinner,
-  Text,
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
+import Spinner from "@/components/ui/Spinner";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -91,13 +83,7 @@ const CategoryPage = () => {
         {filteredData ? (
           filteredData.map((p) => <CardItem key={p.id} product={p} />)
         ) : (
-          <Box bg={"#161622"} h={"100vh"} w={"100vw"}>
-            <Spinner
-              color="#FF9C01"
-              alignContent={"center"}
-              justifyContent={"center"}
-            />
-          </Box>
+          <Spinner />
         )}
       </SimpleGrid>
     </Box>
