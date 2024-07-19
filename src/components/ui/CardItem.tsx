@@ -16,6 +16,7 @@ import {
   Stack,
   StackDivider,
   Text,
+  Link,
 } from "@chakra-ui/react";
 import ProductImage from "./ProductImage";
 import { isNewProduct } from "@/lib/isNewProduct";
@@ -26,6 +27,7 @@ import { useParams, useRouter } from "next/navigation";
 import ErrorComponent from "./ErrorComponent";
 import { useState } from "react";
 import { PizzaSize } from "@/type";
+import NextLink from "next/link";
 
 interface CardProps {
   product: Tables<"products">;
@@ -54,82 +56,84 @@ const CardItem = ({ product }: CardProps) => {
     // router.push(`/product/${product.id}`);
   }
   return (
-    <Card
-      bg={"#050152"}
-      borderRadius={"0"}
-      data-aos="zoom-in-up"
-      data-aos-duration="1500"
-    >
-      <CardHeader>
-        <Flex alignItems={"center"} justifyContent={"space-between"}>
-          <Heading size="md" color={"#FF9C01"}>
-            {product.name}
-          </Heading>
-          {isNew && (
-            <Badge ml="1" colorScheme="green" borderRadius={"0"}>
-              New
-            </Badge>
-          )}
-        </Flex>
-      </CardHeader>
-
-      <CardBody>
-        <Stack divider={<StackDivider borderColor={"#FF9C01"} />} spacing="4">
-          {product.image && pizzas[0].img && (
-            <Box position={"relative"} height={"150px"}>
-              <ProductImage
-                fallback={pizzas[0].img}
-                path={product.image}
-                radius="rounded-lg"
-              />
-            </Box>
-          )}
+    <Link as={NextLink} href={`/product/${product.id}`}>
+      <Card
+        bg={"#050152"}
+        borderRadius={"0"}
+        data-aos="zoom-in-up"
+        data-aos-duration="1500"
+      >
+        <CardHeader>
           <Flex alignItems={"center"} justifyContent={"space-between"}>
-            {product.discount && (
-              <Text
-                fontSize={"xs"}
-                bg={"#ff0101"}
-                p={"4px"}
-                textDecoration={"line-through"}
-                color={"#fff"}
-              >
-                {priceTag(product.discount)}
-              </Text>
-            )}
-            <Text fontWeight={700} fontSize={"xs"} bg={"#FF9C01"} p={"4px"}>
-              {priceTag(product.price)}
-            </Text>
-            {product.discount && product.discount > product.price && (
-              <Text color={"#FF9C01"}>
-                -{discountCalculator(product.price, product.discount)}
-              </Text>
+            <Heading size="md" color={"#FF9C01"}>
+              {product.name}
+            </Heading>
+            {isNew && (
+              <Badge ml="1" colorScheme="green" borderRadius={"0"}>
+                New
+              </Badge>
             )}
           </Flex>
-          {product.description && (
-            <Box>
-              <Text pt="2" fontSize="xs" fontWeight={200} color={"#fff"}>
-                {product.description}
+        </CardHeader>
+
+        <CardBody>
+          <Stack divider={<StackDivider borderColor={"#FF9C01"} />} spacing="4">
+            {product.image && pizzas[0].img && (
+              <Box position={"relative"} height={"150px"}>
+                <ProductImage
+                  fallback={pizzas[0].img}
+                  path={product.image}
+                  radius="rounded-lg"
+                />
+              </Box>
+            )}
+            <Flex alignItems={"center"} justifyContent={"space-between"}>
+              {product.discount && (
+                <Text
+                  fontSize={"xs"}
+                  bg={"#ff0101"}
+                  p={"4px"}
+                  textDecoration={"line-through"}
+                  color={"#fff"}
+                >
+                  {priceTag(product.discount)}
+                </Text>
+              )}
+              <Text fontWeight={700} fontSize={"xs"} bg={"#FF9C01"} p={"4px"}>
+                {priceTag(product.price)}
               </Text>
-            </Box>
-          )}
-        </Stack>
-      </CardBody>
-      <CardFooter alignItems={"center"} justifyContent={"center"}>
-        <ButtonGroup spacing="2">
-          <Button
-            variant="solid"
-            bg={"#FF9C01"}
-            colorScheme="white"
-            borderRadius={"0"}
-            onClick={() => addProductToCart(product)}
-            _hover={{ opacity: 0.7 }}
-            fontSize={"xs"}
-          >
-            Add to cart
-          </Button>
-        </ButtonGroup>
-      </CardFooter>
-    </Card>
+              {product.discount && product.discount > product.price && (
+                <Text color={"#FF9C01"}>
+                  -{discountCalculator(product.price, product.discount)}
+                </Text>
+              )}
+            </Flex>
+            {product.description && (
+              <Box>
+                <Text pt="2" fontSize="xs" fontWeight={200} color={"#fff"}>
+                  {product.description}
+                </Text>
+              </Box>
+            )}
+          </Stack>
+        </CardBody>
+        <CardFooter alignItems={"center"} justifyContent={"center"}>
+          <ButtonGroup spacing="2">
+            <Button
+              variant="solid"
+              bg={"#FF9C01"}
+              colorScheme="white"
+              borderRadius={"0"}
+              onClick={() => addProductToCart(product)}
+              _hover={{ opacity: 0.7 }}
+              fontSize={"xs"}
+            >
+              Add to cart
+            </Button>
+          </ButtonGroup>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 };
 

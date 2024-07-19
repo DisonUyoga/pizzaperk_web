@@ -2,10 +2,12 @@
 
 import { useAppSelector } from "@/lib/hook";
 import {
+  Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   Text,
@@ -37,6 +39,23 @@ export default function DrawerComponent({ isOpen, onClose }: DrawerProps) {
               )}
             </VStack>
           </DrawerBody>
+          <DrawerFooter
+            borderTopWidth="1px"
+            alignContent={"center"}
+            justifyContent={"center"}
+          >
+            <Button
+              variant={"solid"}
+              colorScheme="white"
+              bg={"#118337"}
+              onClick={() => {
+                onClose();
+              }}
+              _hover={{ opacity: 0.7 }}
+            >
+              Checkout
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
