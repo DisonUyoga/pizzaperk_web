@@ -90,6 +90,12 @@ const NavBar = () => {
               {l.display}
             </Link>
           ))}
+          <Text
+            onClick={onOpen}
+            className="text-white hover:text-gray-200 cursor-pointer"
+          >
+            Cart({totalQuantity})
+          </Text>
         </div>
       </nav>
       <DrawerComponent isOpen={openDrawer} onClose={onClose} />
