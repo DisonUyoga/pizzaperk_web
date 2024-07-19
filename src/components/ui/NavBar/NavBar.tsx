@@ -60,7 +60,10 @@ const NavBar = () => {
               </Link>
             ))}
             <Text
-              onClick={onOpen}
+              onClick={() => {
+                onOpen();
+                setIsOpen(!isOpen);
+              }}
               className="text-white hover:text-gray-200 cursor-pointer"
             >
               Cart({totalQuantity})
@@ -91,7 +94,10 @@ const NavBar = () => {
             </Link>
           ))}
           <Text
-            onClick={onOpen}
+            onClick={() => {
+              onOpen();
+              setIsOpen(!isOpen);
+            }}
             className="text-white hover:text-gray-200 cursor-pointer"
           >
             Cart({totalQuantity})
