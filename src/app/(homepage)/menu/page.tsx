@@ -48,10 +48,10 @@ const MenuPage = () => {
         p="10px"
         py={"20px"}
       >
-        <Skeleton height="200px" />
-        <Skeleton height="200px" />
-        <Skeleton height="200px" />
-        <Skeleton height="200px" />
+        <Skeleton height="100px" />
+        <Skeleton height="100px" />
+        <Skeleton height="100px" />
+        <Skeleton height="100px" />
       </SimpleGrid>
     );
   }
