@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { sessionToken, setUser } from "../features/slices/AuthSlice";
 import NavBar from "@/components/ui/NavBar";
+import ErrorComponent from "@/components/ui/ErrorComponent";
 
 export default function Home() {
   const { data, isLoading, error } = useGetProducts();
@@ -28,16 +29,15 @@ export default function Home() {
   }
   if (error) {
     if (error.message === "JWT expired") {
-      toast(error.message);
       dispatch(
         sessionToken({
           session: null,
         })
       );
       dispatch(setUser({ user: null }));
-      router.push("/login");
+      return <ErrorComponent name={error.name} message={error.message} />;
     }
-    return;
+    return <ErrorComponent name={error.name} message={error.message} />;
   }
   if (errorDelivery) {
     toast(errorDelivery.message);

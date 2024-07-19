@@ -1,21 +1,23 @@
 "use client";
-import { pizzas } from "@/data";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useGetProducts } from "@/lib/query";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 import SkeletonLoader from "@/components/SkeletonLoader";
-import toast from "react-hot-toast";
-import { Tables } from "@/type";
-import ProductImage from "@/components/ui/ProductImage";
-import { priceTag } from "@/lib/priceTage";
-import { discountCalculator } from "@/lib/discountCalculator";
 import CardItem from "@/components/ui/CardItem";
-import { SimpleGrid, Spinner, Text, Box } from "@chakra-ui/react";
+import ErrorComponent from "@/components/ui/ErrorComponent";
 import { useAppSelector } from "@/lib/hook";
+import { Tables } from "@/type";
+import {
+  Box,
+  SimpleGrid,
+  Spinner,
+  Text,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+} from "@chakra-ui/react";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -46,10 +48,23 @@ const CategoryPage = () => {
     return router.push("/login");
   }
   if (isLoading) {
-    return <SkeletonLoader />;
+    return (
+      <SimpleGrid
+        spacing={2}
+        minChildWidth="300px"
+        bg="#161622"
+        p="10px"
+        py={"20px"}
+      >
+        <Skeleton height="200px" />
+        <Skeleton height="200px" />
+        <Skeleton height="200px" />
+        <Skeleton height="200px" />
+      </SimpleGrid>
+    );
   }
   if (error) {
-    return toast(error?.message);
+    return <ErrorComponent name={error.name} message={error.message} />;
   }
   console.log(filteredData);
   return (
@@ -76,7 +91,13 @@ const CategoryPage = () => {
         {filteredData ? (
           filteredData.map((p) => <CardItem key={p.id} product={p} />)
         ) : (
-          <Spinner />
+          <Box bg={"#161622"} h={"100vh"} w={"100vw"}>
+            <Spinner
+              color="#FF9C01"
+              alignContent={"center"}
+              justifyContent={"center"}
+            />
+          </Box>
         )}
       </SimpleGrid>
     </Box>

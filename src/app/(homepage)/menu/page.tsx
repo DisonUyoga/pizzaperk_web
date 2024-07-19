@@ -18,8 +18,14 @@ import {
   Heading,
   Link,
   SimpleGrid,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Skeleton,
 } from "@chakra-ui/react";
 import ProductImage from "@/components/ui/ProductImage";
+import ErrorComponent from "@/components/ui/ErrorComponent";
 
 const MenuPage = () => {
   const {
@@ -34,10 +40,28 @@ const MenuPage = () => {
   }
 
   if (isLoadingCategory) {
-    return <SkeletonLoader />;
+    return (
+      <SimpleGrid
+        spacing={2}
+        minChildWidth="300px"
+        bg="#161622"
+        p="10px"
+        py={"20px"}
+      >
+        <Skeleton height="200px" />
+        <Skeleton height="200px" />
+        <Skeleton height="200px" />
+        <Skeleton height="200px" />
+      </SimpleGrid>
+    );
   }
   if (categoriesError?.message) {
-    return toast(categoriesError?.message);
+    return (
+      <ErrorComponent
+        name={categoriesError.name}
+        message={categoriesError.message}
+      />
+    );
   }
   return (
     <SimpleGrid

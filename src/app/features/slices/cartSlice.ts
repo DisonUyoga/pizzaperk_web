@@ -16,17 +16,17 @@ export interface CartProps {
   cartItems: CartItems[];
   totalAmount: number;
   totalQuantity: number;
-  sizes: PizzaSize;
+  sizes: PizzaSize | null;
 }
 export interface CartProductProps {
   product: Tables<"products">;
-  size: string;
+  size: PizzaSize | null;
 }
 const initialState = {
   cartItems: [],
   totalAmount: 0,
   totalQuantity: 0,
-  sizes: "XL",
+  sizes: null,
 } as CartProps;
 
 const cartSlice = createSlice({

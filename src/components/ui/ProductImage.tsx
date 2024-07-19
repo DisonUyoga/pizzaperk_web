@@ -30,7 +30,6 @@ const ProductImage = ({ path, fallback, radius }: RemoteImageProps) => {
           }}
         />
       )}
-      ;
     </div>
   );
 };
