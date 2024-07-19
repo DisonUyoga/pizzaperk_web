@@ -4,6 +4,7 @@ import { useAppSelector } from "@/lib/hook";
 import {
   Drawer,
   DrawerBody,
+  DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
@@ -25,6 +26,7 @@ export default function DrawerComponent({ isOpen, onClose }: DrawerProps) {
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
+          <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">Cart</DrawerHeader>
           <DrawerBody>
             <VStack spacing={5} p={0} m={0}>
