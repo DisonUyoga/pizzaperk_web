@@ -21,7 +21,7 @@ interface DrawerProps {
 }
 export default function DrawerComponent({ isOpen, onClose }: DrawerProps) {
   const [placement, setPlacement] = useState<any>("right");
-  const { cartItems } = useAppSelector((state) => state.cart);
+  const { cartItems, totalAmount } = useAppSelector((state) => state.cart);
 
   return (
     <>
@@ -44,7 +44,7 @@ export default function DrawerComponent({ isOpen, onClose }: DrawerProps) {
             alignContent={"center"}
             justifyContent={"center"}
           >
-            <Button
+           {totalAmount>0&& <Button
               variant={"solid"}
               colorScheme="white"
               bg={"#118337"}
@@ -54,7 +54,7 @@ export default function DrawerComponent({ isOpen, onClose }: DrawerProps) {
               _hover={{ opacity: 0.7 }}
             >
               Checkout
-            </Button>
+            </Button>}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

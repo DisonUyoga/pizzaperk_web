@@ -10,27 +10,34 @@ import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { Box, Flex, HStack, Text, Link } from "@chakra-ui/react";
 import ProductImage from "./ProductImage";
 import NextLink from "next/link";
+import CartImage from "../CartImage";
+import _ from "lodash";
 
 interface CartCardProps {
   cartItem: CartItems;
 }
 const CartCard = ({ cartItem }: CartCardProps) => {
   const dispatch = useAppDispatch();
+
+  const name = _.truncate(cartItem.name as string, {
+    separator: " ",
+    length: 12,
+  });
   return (
-    <Link as={NextLink} href={`/product/${cartItem.id}`}>
+    <Link as={NextLink} href={`/product/${cartItem.id}`} w={"100%"}>
       <Flex
         alignContent={"center"}
         justifyContent={"space-between"}
         borderRadius={"0"}
         bg={"#050152"}
-        p="10px"
-        columnGap={5}
+        p={"10px"}
+        columnGap={2}
         h={"90px"}
         w={"100%"}
       >
         <Box position={"relative"} w={"60px"}>
           {pizzas[0].img && cartItem.image && (
-            <ProductImage fallback={pizzas[0].img} path={cartItem.image} />
+            <CartImage fallback={pizzas[0].img} path={cartItem.image} />
           )}
         </Box>
         <Flex
@@ -39,7 +46,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           justifyContent={"space-between"}
         >
           <Text fontSize={"xs"} color={"#FF9C01"}>
-            {cartItem.name}
+            {name}
           </Text>
           <Text fontSize={"xs"} color={"#fff"}>
             {priceTag(cartItem.price)}
@@ -50,17 +57,17 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           alignContent={"center"}
           justifyContent={"space-between"}
         >
-          <HStack spacing={"20px"} p={0} m={0}>
+          <HStack spacing={"8px"} p={0} m={0}>
             <AddIcon
-              w={4}
-              h={4}
+              w={[2, 4]}
+              h={[2, 4]}
               color={"#ffff"}
               onClick={() => dispatch(increaseQuantity(cartItem))}
             />
             <Text color={"#fff"}>{cartItem.quantity}</Text>
             <MinusIcon
-              w={4}
-              h={4}
+              w={[2, 4]}
+              h={[2, 4]}
               color={"#ffff"}
               onClick={() => dispatch(decreaseQuantity(cartItem))}
             />

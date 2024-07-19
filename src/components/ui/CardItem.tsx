@@ -28,6 +28,7 @@ import ErrorComponent from "./ErrorComponent";
 import { useState } from "react";
 import { PizzaSize } from "@/type";
 import NextLink from "next/link";
+import _ from "lodash";
 
 interface CardProps {
   product: Tables<"products">;
@@ -55,6 +56,10 @@ const CardItem = ({ product }: CardProps) => {
 
     // router.push(`/product/${product.id}`);
   }
+  const description = _.truncate(product?.description as string, {
+    separator: " ",
+    length: 30,
+  });
   return (
     <Link as={NextLink} href={`/product/${product.id}`}>
       <Card
@@ -108,10 +113,10 @@ const CardItem = ({ product }: CardProps) => {
                 </Text>
               )}
             </Flex>
-            {product.description && (
+            {description && (
               <Box>
                 <Text pt="2" fontSize="xs" fontWeight={200} color={"#fff"}>
-                  {product.description}
+                  {description}
                 </Text>
               </Box>
             )}
